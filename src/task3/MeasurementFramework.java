@@ -74,8 +74,8 @@ public class MeasurementFramework extends FilterFramework {
 
 	void writeMeasurementOut(Measurement measurement, int portID)
 	{
-		byte[] byteId = measurement.getIdAsByteArray();
-		byte[] byteMeasurement = measurement.getMeasurementAsByteArray();
+		byte[] byteId = measurement.getIdByte();
+		byte[] byteMeasurement = measurement.getMeasurementByteArray();
 
 		for (byte b : byteId) {
 			WriteFilterOutputPort(b, portID);

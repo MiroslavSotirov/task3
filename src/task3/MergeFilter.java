@@ -60,8 +60,8 @@ public class MergeFilter extends MeasurementFramework {
                     measurementB = forward(measurementB, 1);
                 } else if (measurementB == null) {
                     measurementA = forward(measurementA, 0);
-                } else if (measurementA.getMeasurementAsCalendar().compareTo(
-                        measurementB.getMeasurementAsCalendar()) <= 0) {
+                } else if (measurementA.getMeasurementCal().compareTo(
+                        measurementB.getMeasurementCal()) <= 0) {
                     measurementA = forward(measurementA, 0);
                 } else {
                     measurementB = forward(measurementB, 1);

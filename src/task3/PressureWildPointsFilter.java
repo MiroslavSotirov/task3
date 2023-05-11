@@ -65,11 +65,11 @@ public class PressureWildPointsFilter extends MeasurementFramework {
      * @return True if the measurement is valid, false otherwise
      */
     private boolean isValid(Measurement lastValidPoint, Measurement measurement) {
-        if (measurement.getMeasurementAsDouble() < 0) {
+        if (measurement.getMeasurementDouble() < 0) {
             return false;
         } // if
         if (lastValidPoint != null) {
-            return Math.abs(measurement.getMeasurementAsDouble() - lastValidPoint.getMeasurementAsDouble()) <= deviation;
+            return Math.abs(measurement.getMeasurementDouble() - lastValidPoint.getMeasurementDouble()) <= deviation;
         } // if
         return true;
     } // isValid
@@ -87,11 +87,11 @@ public class PressureWildPointsFilter extends MeasurementFramework {
         if (lastValid == null && nextValid == null) {
             throw new NullPointerException("lastValid and nextValid are null");
         } else if (lastValid == null) {
-            return new Measurement(extrapolateId, nextValid.getMeasurementAsDouble());
+            return new Measurement(extrapolateId, nextValid.getMeasurementDouble());
         } else if (nextValid == null) {
-            return new Measurement(extrapolateId, lastValid.getMeasurementAsDouble());
+            return new Measurement(extrapolateId, lastValid.getMeasurementDouble());
         } else {
-            return new Measurement(extrapolateId, (lastValid.getMeasurementAsDouble() + nextValid.getMeasurementAsDouble()) / 2);
+            return new Measurement(extrapolateId, (lastValid.getMeasurementDouble() + nextValid.getMeasurementDouble()) / 2);
         } // if
     } // extrapolate
     
@@ -103,7 +103,7 @@ public class PressureWildPointsFilter extends MeasurementFramework {
      */
     private void processCache(Measurement lastValidPoint, Measurement validMeasurement, int wildPoints){
     	for (Measurement m : cache){
-    		if (m.getId() == Measurement.ID_TIME){
+    		if (m.getId() == Measurement.TIME_ID){
                 writeMeasurementOut(m, 0);
     			if (wildPoints > 0){
                     writeMeasurementOut(m, 1);

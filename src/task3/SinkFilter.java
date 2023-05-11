@@ -77,7 +77,7 @@ public class SinkFilter extends MeasurementFramework {
 						if (m == null){
 							m = outputMap.get(orderedId | (1 << 5));
 						}
-						outputString+= m.getMeasurementAsString();
+						outputString+= m.getMeasurementStr();
 						if (i < orderedIds.length -1){
 							outputString += ',';
 						}

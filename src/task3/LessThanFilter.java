@@ -50,7 +50,7 @@ public class LessThanFilter extends MeasurementFramework {
                     }
                     frame.clear();
                 } else if (measurement.getId() == id) {
-                    if (measurement.getMeasurementAsDouble() < limit) {
+                    if (measurement.getMeasurementDouble() < limit) {
                         lessThanLimit = true;
                     } else {
                         lessThanLimit = false;
