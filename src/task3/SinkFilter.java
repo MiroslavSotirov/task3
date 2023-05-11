@@ -19,7 +19,7 @@ import java.util.HashMap;
  */
 
 
-public class SinkFilter extends MeasurementFilterFramework {
+public class SinkFilter extends MeasurementFramework {
 
 	private int[] orderedIds;
 	File file;
@@ -66,7 +66,7 @@ public class SinkFilter extends MeasurementFilterFramework {
 
 			while (true) {
 
-				Measurement readMeasurement = readMeasurementFromInput();
+				Measurement readMeasurement = readMeasurementIn();
 				outputMap.put(readMeasurement.getId(), readMeasurement);
 				
 				// Print the required Measurements in the given order

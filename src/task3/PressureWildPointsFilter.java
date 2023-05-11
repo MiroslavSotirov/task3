@@ -30,7 +30,7 @@ import java.util.List;
  *****************************************************************************************************************
  */
 
-public class PressureWildPointsFilter extends MeasurementFilterFramework {
+public class PressureWildPointsFilter extends MeasurementFramework {
     private final int id;
     private final int extrapolateId;
     private final double deviation;
@@ -104,24 +104,24 @@ public class PressureWildPointsFilter extends MeasurementFilterFramework {
     private void processCache(Measurement lastValidPoint, Measurement validMeasurement, int wildPoints){
     	for (Measurement m : cache){
     		if (m.getId() == Measurement.ID_TIME){
-    			writeMeasurementToOutput(m, 0);
+                writeMeasurementOut(m, 0);
     			if (wildPoints > 0){
-    				writeMeasurementToOutput(m, 1);
+                    writeMeasurementOut(m, 1);
     			}
     		} else if (m.getId() == this.id){
     			// if a pressure point is in the cache it's always extrapolating
     			Measurement extrapolated = extrapolate(lastValidPoint, validMeasurement);
-    			writeMeasurementToOutput(extrapolated, 0);
-    			writeMeasurementToOutput(m, 1);
+                writeMeasurementOut(extrapolated, 0);
+                writeMeasurementOut(m, 1);
     			wildPoints--;
     		} else {
-    			writeMeasurementToOutput(m);
+                writeMeasurementOut(m);
     		}
 
     	} // for: cache
     	
     	if (validMeasurement != null){
-    		writeMeasurementToOutput(validMeasurement);
+            writeMeasurementOut(validMeasurement);
     	} // if
     	
     	cache.clear();
@@ -143,7 +143,7 @@ public class PressureWildPointsFilter extends MeasurementFilterFramework {
     	int wildPoints = 0;
         while (true) {
             try {
-                Measurement measurement = readMeasurementFromInput();
+                Measurement measurement = readMeasurementIn();
 
                 if (measurement.getId() == this.id){
                 	if (isValid(lastValidPoint, measurement)){

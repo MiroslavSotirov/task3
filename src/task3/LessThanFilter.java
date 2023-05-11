@@ -15,7 +15,7 @@ import java.util.List;
  * ****************************************************************************************************************
  */
 
-public class LessThanFilter extends MeasurementFilterFramework {
+public class LessThanFilter extends MeasurementFramework {
     private final int id;
     private final double limit;
 
@@ -38,7 +38,7 @@ public class LessThanFilter extends MeasurementFilterFramework {
 
         while (true) {
             try {
-                Measurement measurement = readMeasurementFromInput();
+                Measurement measurement = readMeasurementIn();
 
                 if (measurement.getId() == 0) {
                     int port = 0;
@@ -46,7 +46,7 @@ public class LessThanFilter extends MeasurementFilterFramework {
                         port = 1;
                     }
                     for (Measurement m : frame) {
-                        writeMeasurementToOutput(m, port);
+                        writeMeasurementOut(m, port);
                     }
                     frame.clear();
                 } else if (measurement.getId() == id) {
@@ -65,7 +65,7 @@ public class LessThanFilter extends MeasurementFilterFramework {
                         port = 1;
                     }
                     for (Measurement m : frame) {
-                        writeMeasurementToOutput(m, port);
+                        writeMeasurementOut(m, port);
                     }
                     frame.clear();
             	}

@@ -13,7 +13,7 @@ import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class SourceFilter extends MeasurementFilterFramework {
+public class SourceFilter extends MeasurementFramework {
 	
 	private final String fileName;
 	

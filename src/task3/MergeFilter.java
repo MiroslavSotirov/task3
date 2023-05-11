@@ -11,7 +11,7 @@ package task3;
  * *****************************************************************************
  */
 
-public class MergeFilter extends MeasurementFilterFramework {
+public class MergeFilter extends MeasurementFramework {
 
     /**
      * Instantiates a new MergeFilter object.
@@ -32,8 +32,8 @@ public class MergeFilter extends MeasurementFilterFramework {
     private Measurement forward(Measurement measurement, int portID) {
         try {
             do {
-                writeMeasurementToOutput(measurement);
-                measurement = readMeasurementFromInput(portID);
+                writeMeasurementOut(measurement);
+                measurement = readMeasurementIn(portID);
             } while (measurement.getId() != 0);
         } catch (EndOfStreamException e) {
             return null;
@@ -46,8 +46,8 @@ public class MergeFilter extends MeasurementFilterFramework {
         Measurement measurementB;
 
         try {
-            measurementA = readMeasurementFromInput(0);
-            measurementB = readMeasurementFromInput(1);
+            measurementA = readMeasurementIn(0);
+            measurementB = readMeasurementIn(1);
 
             while (true) {
 
